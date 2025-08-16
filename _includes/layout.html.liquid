@@ -7,26 +7,41 @@
 	<style>{% include "node_modules/simpledotcss/simple.min.css" %}</style>
 </head>
 <body>
+	{% assign previousChapter = collections.chapters | getPreviousCollectionItem %}
+	{% assign nextChapter = collections.chapters | getNextCollectionItem %}
 	<header>
-		<h1>{{ title | default: "Сдвиг квартала" }}</h1>
+		{% if previousChapter or nextChapter %}
+			<nav>
+				{% if previousChapter %}
+					<a href="{{ previousChapter.url }}">&lt; {{ previousChapter.data.title }}</a>
+				{% endif %}
+					<a href="/">Оглавление</a>
+				{% if nextChapter %}
+					<a href="{{ nextChapter.url }}">{{ nextChapter.data.title }} &gt;</a>
+				{% endif %}
+			</nav>
+		{% else %}
+			<nav>
+				<a href="https://github.com/AntonKhorev/osm-block-shift">GitHub</a>
+			</nav>
+		{% endif %}
 	</header>
+	<h1>{{ title | default: "Сдвиг квартала" }}</h1>
 	<main>
 		{{ content }}
 	</main>
-	{% assign previousChapter = collections.chapters | getPreviousCollectionItem %}
-	{% assign nextChapter = collections.chapters | getNextCollectionItem %}
 	{% if previousChapter or nextChapter %}
-		<nav>
-			<ul>
+		<header>
+			<nav>
 				{% if previousChapter %}
-					<li>Предыдущая глава: <a href="{{ previousChapter.url }}">{{ previousChapter.data.title }}</a></li>
+					<a href="{{ previousChapter.url }}">&lt; {{ previousChapter.data.title }}</a>
 				{% endif %}
-				<li><a href="/">Оглавление</a></li>
+					<a href="/">Оглавление</a>
 				{% if nextChapter %}
-					<li>Следующая глава: <a href="{{ nextChapter.url }}">{{ nextChapter.data.title }}</a></li>
+					<a href="{{ nextChapter.url }}">{{ nextChapter.data.title }} &gt;</a>
 				{% endif %}
-			</ul>
-		</nav>
+			</nav>
+		</header>
 	{% endif %}
 </body>
 </html>
