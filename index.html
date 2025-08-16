@@ -3,7 +3,7 @@ layout: layout.html
 ---
 
 <ol>
-	{% for chapter in collections.chapter %}
+	{% for chapter in collections.chapters %}
 		<li><a href="{{ chapter.url }}">{{ chapter.data.title }}</a></li>
 	{% endfor %}
 </ol>

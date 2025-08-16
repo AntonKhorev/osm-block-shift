@@ -13,5 +13,20 @@
 	<main>
 		{{ content }}
 	</main>
+	{% assign previousChapter = collections.chapters | getPreviousCollectionItem %}
+	{% assign nextChapter = collections.chapters | getNextCollectionItem %}
+	{% if previousChapter or nextChapter %}
+		<nav>
+			<ul>
+				{% if previousChapter %}
+					<li>Предыдущая глава: <a href="{{ previousChapter.url }}">{{ previousChapter.data.title }}</a></li>
+				{% endif %}
+				<li><a href="/">Оглавление</a></li>
+				{% if nextChapter %}
+					<li>Следующая глава: <a href="{{ nextChapter.url }}">{{ nextChapter.data.title }}</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+	{% endif %}
 </body>
 </html>
