@@ -11,7 +11,12 @@ export default function (eleventyConfig) {
 		)
 	})
 	eleventyConfig.addShortcode("tag", function (kv) {
-		return `[\`${kv}\`](https://wiki.openstreetmap.org/wiki/Tag:${encodeURIComponent(kv)})`
+		const [k, v] = kv.split("=")
+		if (!v || v == "*") {
+			return `[\`${kv}\`](https://wiki.openstreetmap.org/wiki/Key:${encodeURIComponent(k)})`
+		} else {
+			return `[\`${kv}\`](https://wiki.openstreetmap.org/wiki/Tag:${encodeURIComponent(kv)})`
+		}
 	})
 	eleventyConfig.addPlugin(HtmlBasePlugin)
 }
