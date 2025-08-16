@@ -10,5 +10,8 @@ export default function (eleventyConfig) {
 			`<ol class="footnotes-list">\n`
 		)
 	})
+	eleventyConfig.addShortcode("tag", function (kv) {
+		return `[\`${kv}\`](https://wiki.openstreetmap.org/wiki/Tag:${encodeURIComponent(kv)})`
+	})
 	eleventyConfig.addPlugin(HtmlBasePlugin)
 }
