@@ -18,5 +18,6 @@ export default function (eleventyConfig) {
 			return `[\`${kv}\`](https://wiki.openstreetmap.org/wiki/Tag:${encodeURIComponent(kv)})`
 		}
 	})
+	eleventyConfig.addPairedShortcode("TODO", function () {})
 	eleventyConfig.addPlugin(HtmlBasePlugin)
 }
