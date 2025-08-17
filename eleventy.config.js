@@ -22,8 +22,10 @@ export default function (eleventyConfig) {
 		}
 	})
 
-	eleventyConfig.addPairedShortcode("action", function (content, name) {
-		return `[${content}](https://josm.openstreetmap.de/wiki/Help/Action/${encodeURIComponent(name)})`
+	eleventyConfig.addPairedShortcode("action", function (content, name, anchor) {
+		let href = `https://josm.openstreetmap.de/wiki/Help/Action/${encodeURIComponent(name)}`
+		if (anchor) href += `#${anchor}`
+		return `[${content}](${href})`
 	})
 
 	eleventyConfig.addPairedShortcode("TODO", function () {})
