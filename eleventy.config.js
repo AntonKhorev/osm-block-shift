@@ -10,6 +10,9 @@ export default function (eleventyConfig) {
 			`<ol class="footnotes-list">\n`
 		)
 	})
+
+	eleventyConfig.addPlugin(HtmlBasePlugin)
+
 	eleventyConfig.addShortcode("tag", function (kv) {
 		const [k, v] = kv.split("=")
 		if (!v || v == "*") {
@@ -18,6 +21,10 @@ export default function (eleventyConfig) {
 			return `[\`${kv}\`](https://wiki.openstreetmap.org/wiki/Tag:${encodeURIComponent(kv)})`
 		}
 	})
+
+	eleventyConfig.addPairedShortcode("action", function (content, name) {
+		return `[${content}](https://josm.openstreetmap.de/wiki/Help/Action/${encodeURIComponent(name)})`
+	})
+
 	eleventyConfig.addPairedShortcode("TODO", function () {})
-	eleventyConfig.addPlugin(HtmlBasePlugin)
 }
