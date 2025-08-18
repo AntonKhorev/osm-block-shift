@@ -13,6 +13,8 @@ export default function (eleventyConfig) {
 
 	eleventyConfig.addPlugin(HtmlBasePlugin)
 
+	eleventyConfig.addPairedShortcode("TODO", function () {})
+
 	eleventyConfig.addShortcode("tag", function (kv) {
 		const [k, v] = kv.split("=")
 		if (!v || v == "*") {
@@ -23,10 +25,21 @@ export default function (eleventyConfig) {
 	})
 
 	eleventyConfig.addPairedShortcode("action", function (content, name, anchor) {
-		let href = `https://josm.openstreetmap.de/wiki/Help/Action/${encodeURIComponent(name)}`
-		if (anchor) href += `#${anchor}`
-		return `[${content}](${href})`
+		return josmHelpShortcode(content, "Action", name, anchor);
 	})
 
-	eleventyConfig.addPairedShortcode("TODO", function () {})
+	eleventyConfig.addPairedShortcode("dialog", function (content, name, anchor) {
+		return josmHelpShortcode(content, "Dialog", name, anchor);
+	})
+
+	eleventyConfig.addPairedShortcode("help", function (content, name, anchor) {
+		return josmHelpShortcode(content, name, undefined, anchor);
+	})
+
+	function josmHelpShortcode(content, section, subsection, anchor) {
+		let href = `https://josm.openstreetmap.de/wiki/Help/${encodeURIComponent(section)}`
+		if (subsection) href += `/${encodeURIComponent(subsection)}`
+		if (anchor) href += `#${anchor}`
+		return `[${content}](${href})`
+	}
 }
