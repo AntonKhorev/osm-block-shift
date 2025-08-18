@@ -1,9 +1,17 @@
 <nav class="chapters">
 	{% if previousChapter %}
-		<a class="prev" href="{{ previousChapter.url }}">&larr; {{ previousChapter.data.title }}</a>
+		<a class="prev" href="{{ previousChapter.url }}">
+			<span class="arrow">&larr;</span>
+			<span class="title">{{ previousChapter.data.title }}</span>
+		</a>
 	{% endif %}
-		<a class="up" href="/">Оглавление</a>
+		<a class="up" href="/">
+			<span class="title">Оглавление</span>
+		</a>
 	{% if nextChapter %}
-		<a class="next" href="{{ nextChapter.url }}">{{ nextChapter.data.title }} &rarr;</a>
+		<a class="next" href="{{ nextChapter.url }}">
+			<span class="title">{{ nextChapter.data.title }}</span>
+			<span class="arrow">&rarr;</span>
+		</a>
 	{% endif %}
 </nav>

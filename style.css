@@ -1,34 +1,47 @@
+nav.chapters {
+	margin: 1em;
+}
 nav.chapters > * {
-	display: block;
+	display: flex;
+	gap: .5em;
 }
 nav.chapters > .prev {
+	justify-content: start;
+}
+nav.chapters > .prev .title {
 	text-align: start;
 }
 nav.chapters > .up {
+	justify-content: center;
+}
+nav.chapters > .prev .title {
 	text-align: center;
 }
 nav.chapters > .next {
+	justify-content: end;
+}
+nav.chapters > .next .title {
 	text-align: end;
 }
 
 @media (min-width: 500px) {
 	nav.chapters {
 		grid-column: 1 / -1;
-		margin: 2em 1em;
+		margin: 2.5em 1em;
 		display: grid;
 		gap: 1em;
 		grid-template-columns: repeat(3, 1fr);
 	}
 	nav.chapters > .prev {
 		grid-column: 1;
-		text-align: center;
+		justify-content: center;
 	}
 	nav.chapters > .up {
 		grid-column: 2;
-		text-align: center;
+		justify-content: center;
 	}
 	nav.chapters > .next {
 		grid-column: 3;
-		text-align: center;
+		justify-content: center;
 	}
 }
