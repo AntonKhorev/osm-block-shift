@@ -5,9 +5,12 @@ export default function (eleventyConfig) {
 	eleventyConfig.amendLibrary("md", (md) => {
 		md.use(markdownItFootnote)
 		md.renderer.rules.footnote_block_open = () => (
-			`<section class="footnotes">\n` +
+			`<hr>\n` +
 			`<h2>Примечания</h2>\n` +
-			`<ol class="footnotes-list">\n`
+			`<ol>\n`
+		)
+		md.renderer.rules.footnote_block_close = () => (
+			`</ol>\n`
 		)
 	})
 
