@@ -3,7 +3,8 @@ layout: layout.html
 ---
 
 <ol>
-	{% for chapter in collections.chapters %}
+	{% assign sortedChapters = collections.chapters | sortByNumberInSlug %}
+	{% for chapter in sortedChapters %}
 		<li><a href="{{ chapter.url }}">{{ chapter.data.title }}</a></li>
 	{% endfor %}
 </ol>

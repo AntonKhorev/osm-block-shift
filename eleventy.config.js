@@ -2,6 +2,17 @@ import { HtmlBasePlugin } from "@11ty/eleventy"
 import markdownItFootnote from "markdown-it-footnote"
 
 export default function (eleventyConfig) {
+	eleventyConfig.addFilter("sortByNumberInSlug", (obj) => {
+		const result = Object.keys(obj)
+			.sort((a, b) => {
+				const [na] = obj[a].fileSlug.split("-")
+				const [nb] = obj[b].fileSlug.split("-")
+				return Number(na) - Number(nb)
+			})
+			.map(key => obj[key])
+		return result
+	})
+
 	eleventyConfig.addPreprocessor("em dash", "md", function (data, content) {
 		return content.replaceAll(" - ", " — ")
 	})

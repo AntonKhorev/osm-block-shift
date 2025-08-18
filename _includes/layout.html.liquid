@@ -8,8 +8,8 @@
 	<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-	{% assign previousChapter = collections.chapters | getPreviousCollectionItem %}
-	{% assign nextChapter = collections.chapters | getNextCollectionItem %}
+	{% assign previousChapter = collections.chapters | sortByNumberInSlug | getPreviousCollectionItem %}
+	{% assign nextChapter = collections.chapters | sortByNumberInSlug | getNextCollectionItem %}
 	<header>
 		<div>
 			<b>Сдвиг квартала</b>
