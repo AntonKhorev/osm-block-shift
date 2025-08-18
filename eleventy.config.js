@@ -2,6 +2,10 @@ import { HtmlBasePlugin } from "@11ty/eleventy"
 import markdownItFootnote from "markdown-it-footnote"
 
 export default function (eleventyConfig) {
+	eleventyConfig.addPreprocessor("em dash", "md", function (data, content) {
+		return content.replaceAll(" - ", " — ")
+	})
+
 	eleventyConfig.amendLibrary("md", (md) => {
 		md.set({ typographer: true, quotes: "«»„“" })
 		md.use(markdownItFootnote)
