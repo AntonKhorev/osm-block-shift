@@ -27,22 +27,22 @@ export default function (eleventyConfig) {
 		}
 	})
 
-	eleventyConfig.addPairedShortcode("action", function (content, name, anchor) {
-		return josmHelpShortcode(content, "Action", name, anchor);
+	eleventyConfig.addPairedShortcode("action", function (content, page) {
+		return josmHelpShortcode(content, `Action/${page}`)
 	})
 
-	eleventyConfig.addPairedShortcode("dialog", function (content, name, anchor) {
-		return josmHelpShortcode(content, "Dialog", name, anchor);
+	eleventyConfig.addPairedShortcode("dialog", function (content, page) {
+		return josmHelpShortcode(content, `Dialog/${page}`)
 	})
 
-	eleventyConfig.addPairedShortcode("help", function (content, name, anchor) {
-		return josmHelpShortcode(content, name, undefined, anchor);
+	eleventyConfig.addPairedShortcode("menu", function (content, page) {
+		return josmHelpShortcode(content, `Menu/${page}`)
 	})
 
-	function josmHelpShortcode(content, section, subsection, anchor) {
-		let href = `https://josm.openstreetmap.de/wiki/Help/${encodeURIComponent(section)}`
-		if (subsection) href += `/${encodeURIComponent(subsection)}`
-		if (anchor) href += `#${anchor}`
+	eleventyConfig.addPairedShortcode("help", josmHelpShortcode)
+
+	function josmHelpShortcode(content, page) {
+		let href = `https://josm.openstreetmap.de/wiki/Help/${encodeURI(page)}`
 		return `[${content}](${href})`
 	}
 
