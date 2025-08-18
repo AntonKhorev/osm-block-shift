@@ -45,4 +45,7 @@ export default function (eleventyConfig) {
 		if (anchor) href += `#${anchor}`
 		return `[${content}](${href})`
 	}
+
+	eleventyConfig.addPassthroughCopy({ "node_modules/simpledotcss/simple.min.css" : "simple.min.css" })
+	eleventyConfig.addPassthroughCopy("style.css")
 }

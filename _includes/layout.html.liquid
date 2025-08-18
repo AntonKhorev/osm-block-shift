@@ -4,28 +4,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Сдвиг квартала</title>
-	<style>{% include "node_modules/simpledotcss/simple.min.css" %}</style>
+	<link rel="stylesheet" href="/simple.min.css">
+	<link rel="stylesheet" href="/style.css">
 </head>
 <body>
 	{% assign previousChapter = collections.chapters | getPreviousCollectionItem %}
 	{% assign nextChapter = collections.chapters | getNextCollectionItem %}
 	<header>
-		{% if previousChapter or nextChapter %}
-			{% include "prev-next.html.liquid" %}
-		{% else %}
-			<nav>
-				<a href="https://github.com/AntonKhorev/osm-block-shift">GitHub</a>
-			</nav>
-		{% endif %}
+		<div>
+			<b>Сдвиг квартала</b>
+			- ранее планировавшаяся запись в <a href="https://www.openstreetmap.org/">OpenStreetMap</a>-дневнике участника <a href="https://www.openstreetmap.org/user/Anton%20Khorev">Anton Khorev</a>
+			- <a href="https://github.com/AntonKhorev/osm-block-shift">исходный код</a>
+		</div>
 	</header>
+	{% if previousChapter or nextChapter %}
+		{% include "prev-next.html.liquid" %}
+	{% endif %}
 	<h1>{{ title | default: "Сдвиг квартала" }}</h1>
 	<main>
 		{{ content }}
 	</main>
 	{% if previousChapter or nextChapter %}
-		<header>
-			{% include "prev-next.html.liquid" %}
-		</header>
+		{% include "prev-next.html.liquid" %}
 	{% endif %}
 </body>
 </html>
