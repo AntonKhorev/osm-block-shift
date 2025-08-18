@@ -20,8 +20,8 @@
 	{% if previousChapter or nextChapter %}
 		{% include "prev-next.html.liquid" %}
 	{% endif %}
-	<h1>{{ title | default: "Сдвиг квартала" }}</h1>
 	<main>
+		<h1>{{ title | default: "Сдвиг квартала" }}</h1>
 		{{ content }}
 	</main>
 	{% if previousChapter or nextChapter %}
