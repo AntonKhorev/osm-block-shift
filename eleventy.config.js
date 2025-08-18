@@ -3,6 +3,7 @@ import markdownItFootnote from "markdown-it-footnote"
 
 export default function (eleventyConfig) {
 	eleventyConfig.amendLibrary("md", (md) => {
+		md.set({ typographer: true, quotes: "«»„“" })
 		md.use(markdownItFootnote)
 		md.renderer.rules.footnote_block_open = () => (
 			`<hr>\n` +
