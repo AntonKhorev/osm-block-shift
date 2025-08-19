@@ -6,6 +6,7 @@
 	<title>Сдвиг квартала</title>
 	<link rel="stylesheet" href="/simple.min.css">
 	<link rel="stylesheet" href="/style.css">
+	<script type="module" async src="/mermaid.js"></script>
 </head>
 <body>
 	{% assign previousChapter = collections.chapters | sortByNumberInSlug | getPreviousCollectionItem %}
@@ -27,6 +28,5 @@
 	{% if previousChapter or nextChapter %}
 		{% include "prev-next.html.liquid" %}
 	{% endif %}
-	{% mermaid_js %}
 </body>
 </html>

@@ -4,13 +4,12 @@ import mermaidPlugin from "@kevingimbel/eleventy-plugin-mermaid"
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(HtmlBasePlugin)
-	eleventyConfig.addPlugin(mermaidPlugin, {
-		mermaid_js_src: "/mermaid/mermaid.esm.min.mjs"
-	})
+	eleventyConfig.addPlugin(mermaidPlugin)
 
 	eleventyConfig.addPassthroughCopy({ "node_modules/simpledotcss/simple.min.css" : "simple.min.css" })
 	eleventyConfig.addPassthroughCopy({ "node_modules/mermaid/dist/mermaid.esm.min.mjs" : "mermaid/mermaid.esm.min.mjs" })
 	eleventyConfig.addPassthroughCopy({ "node_modules/mermaid/dist/chunks/mermaid.esm.min/*.mjs": "mermaid/chunks/mermaid.esm.min" })
+	eleventyConfig.addPassthroughCopy("mermaid.js")
 	eleventyConfig.addPassthroughCopy("style.css")
 
 	eleventyConfig.addFilter("sortByNumberInSlug", (obj) => {
