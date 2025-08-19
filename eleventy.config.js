@@ -1,7 +1,11 @@
 import { HtmlBasePlugin } from "@11ty/eleventy"
 import markdownItFootnote from "markdown-it-footnote"
+import mermaidPlugin from "@kevingimbel/eleventy-plugin-mermaid"
 
 export default function (eleventyConfig) {
+	eleventyConfig.addPlugin(HtmlBasePlugin)
+	eleventyConfig.addPlugin(mermaidPlugin)
+
 	eleventyConfig.addFilter("sortByNumberInSlug", (obj) => {
 		const result = Object.keys(obj)
 			.sort((a, b) => {
@@ -29,8 +33,6 @@ export default function (eleventyConfig) {
 			`</ol>\n`
 		)
 	})
-
-	eleventyConfig.addPlugin(HtmlBasePlugin)
 
 	eleventyConfig.addPairedShortcode("TODO", function () {})
 
