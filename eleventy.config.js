@@ -1,5 +1,6 @@
 import { HtmlBasePlugin } from "@11ty/eleventy"
 import markdownItFootnote from "markdown-it-footnote"
+import markdownItAttrs from "markdown-it-attrs"
 import mermaidPlugin from "@kevingimbel/eleventy-plugin-mermaid"
 
 export default function (eleventyConfig) {
@@ -30,6 +31,7 @@ export default function (eleventyConfig) {
 	eleventyConfig.amendLibrary("md", (md) => {
 		md.set({ typographer: true, quotes: "«»„“" })
 		md.use(markdownItFootnote)
+		md.use(markdownItAttrs)
 		md.renderer.rules.footnote_block_open = () => (
 			`<hr>\n` +
 			`<h2>Примечания</h2>\n` +

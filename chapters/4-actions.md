@@ -48,14 +48,19 @@ title: Предлагаемые действия
 
 ```mermaid
 graph TD
-decideArea[определить область сдвига] --> makePreliminaryChanges[внести предварительные изменения]
+decideArea[определить область сдвига] --> makePreliminaryChanges["внести предварительные изменения (вставить точки в сдвигаемые тротуары, которые длинные)"]
+click decideArea "../5-area/"
 makePreliminaryChanges --> estimateOverlap{оценить перекрытие данных после сдвига}
-estimateOverlap --> |несерьёзные или нет| checkExistingPolygon{проверить, подойдёт ли существующий полигон для выделения области сдвига}
+estimateOverlap --> |несерьёзные или нет| checkExistingPolygon{"проверить, подойдёт ли существующий полигон (landuse, тротуар вокруг) для выделения области сдвига"}
+click checkExistingPolygon "../6-select/#use-existing-way"
 checkExistingPolygon --> |да| selectAllInside[выделить all inside]
 checkExistingPolygon --> |нет| decideLanduse{решить, не нужно ли заодно нарисовать и landuse}
-decideLanduse --> |да| drawLanduse[нарисовать landuse, служащее также областью сдвига]
-decideLanduse --> |нет| drawArea[нарисовать полигон области сдвига]
-drawArea --> selectAllInside
+decideLanduse --> |нужно| drawLanduse[нарисовать landuse, служащее также областью сдвига]
+click drawLanduse "../7-landuse/"
+drawLanduse --> selectAllInside
+decideLanduse --> |не нужно| drawFrame[нарисовать рамку вокруг области сдвига]
+click drawFrame "../6-select/#draw-frame"
+drawFrame --> selectAllInside
 selectAllInside --> fixSelection[исправить выделение]
 fixSelection --> doManualShift[выполнить сдвиг вручную]
 doManualShift --> evaluateManualShift{убедиться в удовлетворительности сдвига}
